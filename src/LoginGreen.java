@@ -26,6 +26,7 @@ public class LoginGreen {
                 frame.setVisible(true);
             }
         });
+
         // Acción para iniciar sesión
         botoninciarsecion.addActionListener(new ActionListener() {
             @Override
@@ -42,7 +43,8 @@ public class LoginGreen {
 
                 // Verificar credenciales en la base de datos
                 try (Connection conn = connectDatabase()) {
-                    String sql = "SELECT rol FROM usuarios WHERE usuario = ? AND contrasena = ?";
+                    // Agregar `nombre` e `id_usuario` en la consulta SQL
+                    String sql = "SELECT nombre, id_usuario, rol FROM usuarios WHERE usuario = ? AND contrasena = ?";
                     PreparedStatement pstmt = conn.prepareStatement(sql);
                     pstmt.setString(1, usuario);
                     pstmt.setString(2, contrasena);
@@ -50,7 +52,11 @@ public class LoginGreen {
                     ResultSet rs = pstmt.executeQuery();
 
                     if (rs.next()) {
+                        String nombreUsuario = rs.getString("nombre");
+                        int idUsuario = rs.getInt("id_usuario");
                         String rolBD = rs.getString("rol");
+
+                        // Verificar si el rol coincide
                         if (!rolBD.equals(rolSeleccionado)) {
                             JOptionPane.showMessageDialog(null, "El rol seleccionado no coincide con el rol registrado.");
                             return;
@@ -59,7 +65,7 @@ public class LoginGreen {
                         // Abrir la ventana correspondiente al rol
                         if (rolBD.equals("cliente")) {
                             JFrame frame = new JFrame("Cliente");
-                            frame.setContentPane(new PaginaclienteGreen().paginaclientes);
+                            frame.setContentPane(new PaginaclienteGreen(nombreUsuario, idUsuario).paginaclientes);
                             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                             frame.setSize(800, 800);
                             frame.setVisible(true);
@@ -67,11 +73,12 @@ public class LoginGreen {
                             JFrame frame = new JFrame("Administrador");
                             frame.setContentPane(new PagniaAdministradores().paginaadmistradores);
                             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                            frame.setSize(800, 800);
+                            frame.setSize(800, 600);
                             frame.setVisible(true);
                         }
 
                         JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso.");
+                        // Cerrar la ventana actual
                         ((JFrame) SwingUtilities.getWindowAncestor(Greenmainpanel)).dispose();
 
                     } else {

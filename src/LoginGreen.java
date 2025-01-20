@@ -1,6 +1,10 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class LoginGreen {
     public JPanel Greenmainpanel;
@@ -11,52 +15,87 @@ public class LoginGreen {
     private JPasswordField textocotrase;
 
     public LoginGreen() {
-        // Configurar roles en el JComboBox
-        selectroles.addItem("Cliente");
-        selectroles.addItem("Administrador");
-
-        botoninciarsecion.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Lógica para autenticar usuario
-                String usuario = textousuario.getText();
-                String contrasenia = new String(textocotrase.getPassword());
-                String rolSeleccionado = (String) selectroles.getSelectedItem();
-
-                // Llamar al método para verificar credenciales (pendiente implementar)
-                if (autenticarUsuario(usuario, contrasenia, rolSeleccionado)) {
-                    JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso como " + rolSeleccionado);
-
-                    JFrame frame = new JFrame();
-                    if (rolSeleccionado.equals("Cliente")) {
-                        frame.setContentPane(new PaginaclienteGreen().paginaclientes);
-                    } else if (rolSeleccionado.equals("Administrador")) {
-                        frame.setContentPane(new PagniaAdministradores().paginaadmistradores);
-                    }
-                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    frame.setSize(800, 800);
-                    frame.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.");
-                }
-            }
-        });
-
+        // Acción del botón para ir a la ventana de registro
         btonregistrarse.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Abrir pantalla de registro
                 JFrame frame = new JFrame("Registro");
                 frame.setContentPane(new RegistroGreen().paginaregistro);
-                frame.setSize(800, 800);
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.setSize(800, 600);
                 frame.setVisible(true);
+            }
+        });
+        // Acción para iniciar sesión
+        botoninciarsecion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String usuario = textousuario.getText();
+                String contrasena = new String(textocotrase.getPassword());
+                String rolSeleccionado = (String) selectroles.getSelectedItem();
+
+                // Validar que los campos no estén vacíos
+                if (usuario.isEmpty() || contrasena.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
+                    return;
+                }
+
+                // Verificar credenciales en la base de datos
+                try (Connection conn = connectDatabase()) {
+                    String sql = "SELECT rol FROM usuarios WHERE usuario = ? AND contrasena = ?";
+                    PreparedStatement pstmt = conn.prepareStatement(sql);
+                    pstmt.setString(1, usuario);
+                    pstmt.setString(2, contrasena);
+
+                    ResultSet rs = pstmt.executeQuery();
+
+                    if (rs.next()) {
+                        String rolBD = rs.getString("rol");
+                        if (!rolBD.equals(rolSeleccionado)) {
+                            JOptionPane.showMessageDialog(null, "El rol seleccionado no coincide con el rol registrado.");
+                            return;
+                        }
+
+                        // Abrir la ventana correspondiente al rol
+                        if (rolBD.equals("cliente")) {
+                            JFrame frame = new JFrame("Cliente");
+                            frame.setContentPane(new PaginaclienteGreen().paginaclientes);
+                            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            frame.setSize(800, 800);
+                            frame.setVisible(true);
+                        } else if (rolBD.equals("administrador")) {
+                            JFrame frame = new JFrame("Administrador");
+                            frame.setContentPane(new PagniaAdministradores().paginaadmistradores);
+                            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            frame.setSize(800, 800);
+                            frame.setVisible(true);
+                        }
+
+                        JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso.");
+                        ((JFrame) SwingUtilities.getWindowAncestor(Greenmainpanel)).dispose();
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Credenciales incorrectas.");
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Error al verificar las credenciales.");
+                }
             }
         });
     }
 
-    private boolean autenticarUsuario(String usuario, String contrasenia, String rol) {
-        // Simulación de autenticación (pendiente implementar conexión con la base de datos)
-        // Retorna verdadero si el usuario y la contraseña coinciden con la base
-        return usuario.equals("admin") && contrasenia.equals("12345") && rol.equals("Administrador");
+    // conexión a la base de datos
+    public static Connection connectDatabase() {
+        Connection connection = null;
+        try {
+            String url = "jdbc:sqlite:C:/Users/garci/Desktop/Base/holahl.db";
+            connection = DriverManager.getConnection(url);
+            System.out.println("Conexión exitosa a la base de datos.");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos.");
+        }
+        return connection;
     }
 }

@@ -177,8 +177,8 @@
             </constraints>
             <properties>
               <model>
-                <item value="CLIENTE"/>
-                <item value="ADMINISTRADOR"/>
+                <item value="cliente"/>
+                <item value="administrador"/>
               </model>
             </properties>
           </component>

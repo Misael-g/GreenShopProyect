@@ -14,7 +14,7 @@ public class PagniaAdministradores extends JFrame {
     private JTextField textonombreproduct;
     private JTextField textoprecioproduct;
     private JTextField textonumerodeestuck;
-    private JButton añadirProductoButton;
+    private JButton anadirProductoButton;
     private JButton actualizarProductoButton;
     private JButton eliminarProductoButton;
     private JButton cerrarSesionButton;
@@ -41,7 +41,7 @@ public class PagniaAdministradores extends JFrame {
         });
 
         // Botón para añadir un producto
-        añadirProductoButton.addActionListener(new ActionListener() {
+        anadirProductoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String nombre = textonombreproduct.getText();

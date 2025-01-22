@@ -12,7 +12,7 @@ public class RegistroGreen {
     private JButton crearusuarButton;
     private JTextField textousuario;
     public JPanel paginaregistro;
-    private JButton iniciarSesiónButton;
+    private JButton iniciarSesionButton;
 
     public RegistroGreen() {
         crearusuarButton.addActionListener(new ActionListener() {
@@ -61,7 +61,7 @@ public class RegistroGreen {
 
             }
         });
-        iniciarSesiónButton.addActionListener(new ActionListener() {
+        iniciarSesionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                     // Regresar a la pantalla de login

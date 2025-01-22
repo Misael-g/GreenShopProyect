@@ -257,7 +257,7 @@ public class PaginaclienteGreen extends JFrame {
     private void generarFacturaPDF(int idVenta) {
         try {
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream("Factura_" + idVenta + ".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("C:/Users/garci/Downloads/Factura_GreenShop" + idVenta + ".pdf"));
             document.open();
 
             document.add(new Paragraph("Factura"));

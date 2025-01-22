@@ -24,6 +24,7 @@ public class LoginGreen {
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame.setSize(800, 600);
                 frame.setVisible(true);
+                ((JFrame) SwingUtilities.getWindowAncestor(Greenmainpanel)).dispose();
             }
         });
 

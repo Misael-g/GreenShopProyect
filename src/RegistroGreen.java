@@ -12,6 +12,7 @@ public class RegistroGreen {
     private JButton crearusuarButton;
     private JTextField textousuario;
     public JPanel paginaregistro;
+    private JButton iniciarSesiónButton;
 
     public RegistroGreen() {
         crearusuarButton.addActionListener(new ActionListener() {
@@ -57,6 +58,21 @@ public class RegistroGreen {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Error al registrar el usuario. Verifique los datos.");
                 }
+
+            }
+        });
+        iniciarSesiónButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    // Regresar a la pantalla de login
+                    JFrame loginFrame = new JFrame("Login");
+                    loginFrame.setContentPane(new LoginGreen().Greenmainpanel);
+                    loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    loginFrame.setSize(800, 600);
+                    loginFrame.setVisible(true);
+
+                    // Cerrar la ventana actual (la de administrador)
+                    ((JFrame) SwingUtilities.getWindowAncestor(paginaregistro)).dispose();
 
             }
         });

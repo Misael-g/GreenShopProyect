@@ -17,6 +17,7 @@ public class PagniaAdministradores extends JFrame {
     private JButton añadirProductoButton;
     private JButton actualizarProductoButton;
     private JButton eliminarProductoButton;
+    private JButton cerrarSesionButton;
 
     public PagniaAdministradores() {
         // Cargar los datos iniciales en las tablas
@@ -92,6 +93,29 @@ public class PagniaAdministradores extends JFrame {
 
                 String idProducto = tablaproductos.getValueAt(selectedRow, 0).toString();
                 eliminarProducto(Integer.parseInt(idProducto));
+            }
+        });
+        cerrarSesionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int confirmacion = JOptionPane.showConfirmDialog(
+                        null,
+                        "¿Está seguro de que desea cerrar sesión?",
+                        "Confirmar cierre de sesión",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                if (confirmacion == JOptionPane.YES_OPTION) {
+                    // Regresar a la pantalla de login
+                    JFrame loginFrame = new JFrame("Login");
+                    loginFrame.setContentPane(new LoginGreen().Greenmainpanel);
+                    loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    loginFrame.setSize(800, 600);
+                    loginFrame.setVisible(true);
+
+                    // Cerrar la ventana actual (la de administrador)
+                    ((JFrame) SwingUtilities.getWindowAncestor(paginaadmistradores)).dispose();
+                }
             }
         });
     }

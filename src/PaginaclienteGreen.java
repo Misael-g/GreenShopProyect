@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileOutputStream;
@@ -18,13 +19,8 @@ public class PaginaclienteGreen extends JFrame {
     private JTable carritotabla;
     private JButton botncomprar;
     private JButton eliminarDelCarritoButton;
-    private JTable tablaultimacompra;
-    private JButton verFacturaButton;
-    private JTextField textocantidad;
     private JButton anadiralcarrito;
+    private JLabel valortotaltex;
 
     private String usuario; // Nombre del usuario actual
     private int idUsuario;  // ID del usuario actual en la base de datos
-
-
-}

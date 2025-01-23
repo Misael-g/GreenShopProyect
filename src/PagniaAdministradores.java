@@ -53,7 +53,7 @@ public class PagniaAdministradores extends JFrame {
                     return;
                 }
 
-                añadirProducto(nombre, Double.parseDouble(precio), Integer.parseInt(stock));
+                anadirProducto(nombre, Double.parseDouble(precio), Integer.parseInt(stock));
             }
         });
 
@@ -118,6 +118,7 @@ public class PagniaAdministradores extends JFrame {
                 }
             }
         });
+
     }
 
     // Métodos para cargar datos en las tablas
@@ -187,7 +188,7 @@ public class PagniaAdministradores extends JFrame {
         }
     }
 
-    private void añadirProducto(String nombre, double precio, int stock) {
+    private void anadirProducto(String nombre, double precio, int stock) {
         try (Connection conn = LoginGreen.connectDatabase();
              PreparedStatement pstmt = conn.prepareStatement("INSERT INTO productos (nombre, precio, stock) VALUES (?, ?, ?)")) {
 
@@ -198,6 +199,12 @@ public class PagniaAdministradores extends JFrame {
 
             JOptionPane.showMessageDialog(null, "Producto añadido con éxito.");
             cargarProductos();
+
+            // Limpiar los campos de entrada
+            textonombreproduct.setText("");
+            textoprecioproduct.setText("");
+            textonumerodeestuck.setText("");
+
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al añadir el producto.");

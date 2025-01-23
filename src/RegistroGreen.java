@@ -29,9 +29,14 @@ public class RegistroGreen {
                     JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
                     return;
                 }
-
+                // Validar que las contraseñas coincidan
                 if (!contrasena.equals(confirmarContrasena)) {
                     JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden.");
+                    return;
+                }
+                // Validar la longitud mínima de la contraseña
+                if (contrasena.length() < 8) {
+                    JOptionPane.showMessageDialog(null, "La contraseña debe tener al menos 8 caracteres.");
                     return;
                 }
 

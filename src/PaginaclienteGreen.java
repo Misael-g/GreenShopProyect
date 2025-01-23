@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -260,17 +261,54 @@ public class PaginaclienteGreen extends JFrame {
             PdfWriter.getInstance(document, new FileOutputStream("C:/Users/garci/Downloads/Factura_GreenShop" + idVenta + ".pdf"));
             document.open();
 
-            document.add(new Paragraph("Factura"));
-            document.add(new Paragraph("ID Venta: " + idVenta));
-            document.add(new Paragraph("Cliente: " + usuario));
-            document.add(new Paragraph(""));
+            // Encabezado principal
+            Font titleFont = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD);
+            Font headerFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+            Font bodyFont = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL);
 
+            Paragraph title = new Paragraph("Green Shop - Factura", titleFont);
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
+
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("ID Venta: " + idVenta, bodyFont));
+            document.add(new Paragraph("Cliente: " + usuario, bodyFont));
+            document.add(new Paragraph("Fecha: " + new java.util.Date().toString(), bodyFont));
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("------------------------------------------------------------"));
+            document.add(new Paragraph(" "));
+
+            // Crear la tabla con encabezados
             PdfPTable table = new PdfPTable(4);
-            table.addCell("ID Producto");
-            table.addCell("Nombre");
-            table.addCell("Cantidad");
-            table.addCell("Subtotal");
+            table.setWidthPercentage(100);
+            table.setSpacingBefore(10f);
+            table.setSpacingAfter(10f);
+            table.setWidths(new float[]{2f, 4f, 2f, 2f}); // Ajustar proporciones
 
+            // Encabezados de la tabla
+            PdfPCell cell;
+            cell = new PdfPCell(new Phrase("ID Producto", headerFont));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            table.addCell(cell);
+
+            cell = new PdfPCell(new Phrase("Nombre", headerFont));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            table.addCell(cell);
+
+            cell = new PdfPCell(new Phrase("Cantidad", headerFont));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            table.addCell(cell);
+
+            cell = new PdfPCell(new Phrase("Subtotal", headerFont));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            table.addCell(cell);
+
+            // Obtener datos de la base de datos
+            double total = 0;
             try (Connection conn = LoginGreen.connectDatabase();
                  PreparedStatement pstmt = conn.prepareStatement(
                          "SELECT c.id_producto, p.nombre, c.cantidad, (c.cantidad * p.precio) AS subtotal " +
@@ -279,14 +317,28 @@ public class PaginaclienteGreen extends JFrame {
                 ResultSet rs = pstmt.executeQuery();
 
                 while (rs.next()) {
-                    table.addCell(String.valueOf(rs.getInt("id_producto")));
-                    table.addCell(rs.getString("nombre"));
-                    table.addCell(String.valueOf(rs.getInt("cantidad")));
-                    table.addCell(String.valueOf(rs.getDouble("subtotal")));
+                    table.addCell(new Phrase(String.valueOf(rs.getInt("id_producto")), bodyFont));
+                    table.addCell(new Phrase(rs.getString("nombre"), bodyFont));
+                    table.addCell(new Phrase(String.valueOf(rs.getInt("cantidad")), bodyFont));
+                    double subtotal = rs.getDouble("subtotal");
+                    total += subtotal;
+                    table.addCell(new Phrase(String.format("$%.2f", subtotal), bodyFont));
                 }
             }
 
+            // Agregar la tabla al documento
             document.add(table);
+
+            // Agregar el total al final
+            Paragraph totalParagraph = new Paragraph("Total: $" + String.format("%.2f", total), headerFont);
+            totalParagraph.setAlignment(Element.ALIGN_RIGHT);
+            document.add(totalParagraph);
+
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("Gracias por su compra.", bodyFont));
+            document.add(new Paragraph("Green Shop - Su tienda ecológica de confianza.", bodyFont));
+
+            // Cerrar documento
             document.close();
 
             JOptionPane.showMessageDialog(null, "Factura generada correctamente.");

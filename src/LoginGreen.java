@@ -22,7 +22,8 @@ public class LoginGreen {
                 JFrame frame = new JFrame("Registro");
                 frame.setContentPane(new RegistroGreen().paginaregistro);
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                frame.setSize(800, 600);
+                frame.setSize(500, 500);
+                frame.setLocationRelativeTo(null); // Centrar ventana en la pantalla
                 frame.setVisible(true);
                 ((JFrame) SwingUtilities.getWindowAncestor(Greenmainpanel)).dispose();
             }
@@ -68,13 +69,15 @@ public class LoginGreen {
                             JFrame frame = new JFrame("Cliente");
                             frame.setContentPane(new PaginaclienteGreen(nombreUsuario, idUsuario).paginaclientes);
                             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                            frame.setSize(800, 800);
+                            frame.setSize(800, 600);
+                            frame.setLocationRelativeTo(null); // Centrar ventana en la pantalla
                             frame.setVisible(true);
                         } else if (rolBD.equals("administrador")) {
                             JFrame frame = new JFrame("Administrador");
                             frame.setContentPane(new PagniaAdministradores().paginaadmistradores);
                             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                             frame.setSize(800, 600);
+                            frame.setLocationRelativeTo(null); // Centrar ventana en la pantalla
                             frame.setVisible(true);
                         }
 
@@ -97,7 +100,7 @@ public class LoginGreen {
     public static Connection connectDatabase() {
         Connection connection = null;
         try {
-            String url = "jdbc:sqlite:C:/Users/garci/Desktop/Base/holahl.db";
+            String url = "jdbc:sqlite:C:/Users/garci/Desktop/Base/GreenShop.db";
             connection = DriverManager.getConnection(url);
             System.out.println("Conexión exitosa a la base de datos.");
         } catch (Exception ex) {

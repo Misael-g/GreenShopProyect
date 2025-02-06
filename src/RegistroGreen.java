@@ -73,7 +73,8 @@ public class RegistroGreen {
                     JFrame loginFrame = new JFrame("Login");
                     loginFrame.setContentPane(new LoginGreen().Greenmainpanel);
                     loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    loginFrame.setSize(800, 600);
+                    loginFrame.setSize(500, 500);
+                    loginFrame.setLocationRelativeTo(null); // Centrar ventana en la pantalla
                     loginFrame.setVisible(true);
 
                     // Cerrar la ventana actual (la de administrador)

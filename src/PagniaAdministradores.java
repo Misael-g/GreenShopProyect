@@ -18,6 +18,7 @@ public class PagniaAdministradores extends JFrame {
     private JButton actualizarProductoButton;
     private JButton eliminarProductoButton;
     private JButton cerrarSesionButton;
+    private JButton ELIMINARROLADMINISTRADORButton;
 
     public PagniaAdministradores() {
         // Cargar los datos iniciales en las tablas
@@ -39,6 +40,21 @@ public class PagniaAdministradores extends JFrame {
                 cambiarRolUsuario(usuario);
             }
         });
+        // Botón para eliminar el rol de administrador y convertirlo en cliente
+        ELIMINARROLADMINISTRADORButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = tablaclientesresgitrados.getSelectedRow();
+                if (selectedRow == -1) {
+                    JOptionPane.showMessageDialog(null, "Seleccione un administrador para cambiar su rol a cliente.");
+                    return;
+                }
+
+                String usuario = tablaclientesresgitrados.getValueAt(selectedRow, 0).toString();
+                eliminarRolAdministrador(usuario);
+            }
+        });
+
 
         // Botón para añadir un producto
         anadirProductoButton.addActionListener(new ActionListener() {
@@ -110,7 +126,8 @@ public class PagniaAdministradores extends JFrame {
                     JFrame loginFrame = new JFrame("Login");
                     loginFrame.setContentPane(new LoginGreen().Greenmainpanel);
                     loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    loginFrame.setSize(800, 600);
+                    loginFrame.setSize(500, 500);
+                    loginFrame.setLocationRelativeTo(null); // Centrar ventana en la pantalla
                     loginFrame.setVisible(true);
 
                     // Cerrar la ventana actual (la de administrador)
@@ -181,6 +198,24 @@ public class PagniaAdministradores extends JFrame {
             if (rowsAffected > 0) {
                 JOptionPane.showMessageDialog(null, "Rol cambiado con éxito.");
                 cargarUsuarios();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al cambiar el rol del usuario.");
+        }
+    }
+    private void eliminarRolAdministrador(String usuario) {
+        try (Connection conn = LoginGreen.connectDatabase();
+             PreparedStatement pstmt = conn.prepareStatement("UPDATE usuarios SET rol = 'cliente' WHERE usuario = ? AND rol = 'administrador'")) {
+
+            pstmt.setString(1, usuario);
+            int rowsAffected = pstmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(null, "Rol eliminado con éxito. Ahora es un cliente.");
+                cargarUsuarios(); // Refrescar la tabla
+            } else {
+                JOptionPane.showMessageDialog(null, "El usuario no es administrador o hubo un error.");
             }
         } catch (SQLException e) {
             e.printStackTrace();

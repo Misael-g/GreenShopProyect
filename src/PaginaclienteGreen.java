@@ -124,7 +124,8 @@ public class PaginaclienteGreen extends JFrame {
                     JFrame loginFrame = new JFrame("Login");
                     loginFrame.setContentPane(new LoginGreen().Greenmainpanel);
                     loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    loginFrame.setSize(800, 600);
+                    loginFrame.setSize(500, 500);
+                    loginFrame.setLocationRelativeTo(null); // Centrar ventana en la pantalla
                     loginFrame.setVisible(true);
 
                     // Cerrar la ventana actual (la de administrador)
@@ -186,6 +187,11 @@ public class PaginaclienteGreen extends JFrame {
     }
 
     private void confirmarCompra() {
+        if (carritotabla.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "No hay productos en el carrito para comprar.");
+            return;
+        }
+
         try (Connection conn = LoginGreen.connectDatabase()) {
             conn.setAutoCommit(false);
 
@@ -348,7 +354,4 @@ public class PaginaclienteGreen extends JFrame {
         }
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }

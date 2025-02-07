@@ -1,11 +1,16 @@
-📌 PRUEBAS UNITARIAS Y DE INTEGRACIÓN
-📝 Introducción
-Este documento contiene la evidencia de las pruebas realizadas en el sistema GreenShop. Se incluyen pruebas unitarias para métodos individuales y pruebas de integración para verificar el funcionamiento entre componentes.
+# 📌 PRUEBAS UNITARIAS Y DE INTEGRACIÓN
 
-✅ PRUEBAS UNITARIAS
+## 📝 Introducción
+Este documento contiene la evidencia de las pruebas realizadas en el sistema GreenShop. Se incluyen pruebas unitarias para métodos individuales y pruebas de integración para verificar el funcionamiento entre componentes. 
+
+---
+
+## ✅ PRUEBAS UNITARIAS
+
 Las pruebas unitarias evalúan la funcionalidad de métodos individuales para garantizar su correcto funcionamiento.
 
-🔹 1. Cargar productos desde la base de datos
+##  🔹 1. Cargar productos desde la base de datos
+
 📌 Descripción: Verificar que los productos se cargan correctamente en la tabla.
 
 🛠 Escenarios:
@@ -33,7 +38,7 @@ Escenarios:
 ![image](https://github.com/user-attachments/assets/f87d78a6-b461-4912-bff1-e0cf244cb7e5)
 
 
-###🔹 3. Eliminar producto del carrito
+### 🔹 3. Eliminar producto del carrito
 
 Descripción: Verificar que los productos pueden eliminarse correctamente.
 
@@ -47,7 +52,7 @@ Escenarios:
 ![image](https://github.com/user-attachments/assets/90b8239f-435b-472a-bb52-ac508b9d49ee)
 
 
-###🔹 4. Calcular total del carrito y valores negativos
+### 🔹 4. Calcular total del carrito y valores negativos
 
 Descripción: Validar que el total del carrito se calcula correctamente y no se puedan insertar negativos.
 
@@ -60,11 +65,11 @@ Escenarios:
 ![image](https://github.com/user-attachments/assets/7d09f538-6d13-4d95-bcc4-3f13a8f0f48a)
 ![image](https://github.com/user-attachments/assets/6e4d71c4-0fb8-45ed-a97a-e7cb9557e0b3)
 
-##🔗 PRUEBAS DE INTEGRACIÓN
+## 🔗 PRUEBAS DE INTEGRACIÓN
 
 Las pruebas de integración validan la comunicación entre diferentes módulos del sistema.
 
-###🔹 1. Compra de productos y actualización de stock
+### 🔹 1. Compra de productos y actualización de stock
 
 Descripción: Verificar que, al confirmar una compra, el stock se actualiza correctamente.
 
@@ -78,7 +83,7 @@ Escenarios:
 ![image](https://github.com/user-attachments/assets/7767d89f-f777-4bfa-aeb9-0d53459fe2b0)
 
 
-###🔹 2. Generación de factura en PDF
+### 🔹 2. Generación de factura en PDF
 
 Descripción: Asegurar que, tras la compra, se genera una factura en formato PDF.
 
@@ -90,7 +95,7 @@ Escenarios:
 ![image](https://github.com/user-attachments/assets/015de98b-2563-471c-8b62-be092a576c68)
 ![image](https://github.com/user-attachments/assets/6a06d5d2-96ff-49ab-a45f-ae35110586dd)
 
-🔹 3. Actualización del historial de compras
+### 🔹 3. Actualización del historial de compras
 
 Descripción: Comprobar que una compra exitosa se registra en el historial del administrador.
 

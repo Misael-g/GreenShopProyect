@@ -58,5 +58,6 @@ A continuación, se muestran algunas capturas de pantalla del funcionamiento del
 ![image](https://github.com/user-attachments/assets/68b97320-56f1-47bb-aa06-5e7469a93e8c)
 ![image](https://github.com/user-attachments/assets/99220680-e657-493a-972d-2d81ccc477e8)
 
-
+## 📸 Link del video de manual de usuario
+[de manual de usuario](https://youtu.be/m5VQHITDiEo) 
 

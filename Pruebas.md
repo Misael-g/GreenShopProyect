@@ -1,23 +1,18 @@
-#📌 PRUEBAS UNITARIAS Y DE INTEGRACIÓN
-
----
-##📝 Introducción
-
+📌 PRUEBAS UNITARIAS Y DE INTEGRACIÓN
+📝 Introducción
 Este documento contiene la evidencia de las pruebas realizadas en el sistema GreenShop. Se incluyen pruebas unitarias para métodos individuales y pruebas de integración para verificar el funcionamiento entre componentes.
----
-##✅ PRUEBAS UNITARIAS
 
+✅ PRUEBAS UNITARIAS
 Las pruebas unitarias evalúan la funcionalidad de métodos individuales para garantizar su correcto funcionamiento.
 
-###🔹 1. Cargar productos desde la base de datos
+🔹 1. Cargar productos desde la base de datos
+📌 Descripción: Verificar que los productos se cargan correctamente en la tabla.
 
-Descripción: Verificar que los productos se cargan correctamente en la tabla.
-
-Escenarios:
+🛠 Escenarios:
 
 🟢 Caso válido: Existen productos en la base de datos.
-
 🔴 Caso límite: No hay productos en la base de datos.
+📸 Evidencia:
 
 ![image](https://github.com/user-attachments/assets/28173dc6-1425-493c-813b-6fb623b0de9e)
 ![image](https://github.com/user-attachments/assets/8bab5ac9-4ec5-40b7-93d3-a99f4bf14a95)

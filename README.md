@@ -41,3 +41,21 @@ El sistema está desarrollado en **Java**, con almacenamiento en **SQLite** y un
 1. Clonar el repositorio:  
    ```bash
    git clone https://github.com/tu_usuario/GreenShop.git
+---
+## 📸 Capturas de Pantalla
+A continuación, se muestran algunas capturas de pantalla del funcionamiento del sistema:
+### Pantalla de Login y Registro:
+![image](https://github.com/user-attachments/assets/edbd61aa-6d4b-492a-bb21-83cf411d3537)
+![image](https://github.com/user-attachments/assets/9935e155-711c-462e-bb96-6320cb24125c)
+### Vista de ventana cliente:
+![image](https://github.com/user-attachments/assets/f9602869-4741-4089-b0df-6a533fa19e03)
+![image](https://github.com/user-attachments/assets/98bbb4bd-7e6e-462b-849c-30d1da18dec0)
+### Vista de ventana administrador:
+![image](https://github.com/user-attachments/assets/3e4bb52b-ccfa-441b-9686-e06d5555bc0a)
+![image](https://github.com/user-attachments/assets/30217cd1-2b8c-456b-9987-4ed09d4af511)
+![image](https://github.com/user-attachments/assets/c5c72f35-011a-4fc9-b9cf-0839a4b36b35)
+### Generación de Factura:
+![image](https://github.com/user-attachments/assets/68b97320-56f1-47bb-aa06-5e7469a93e8c)
+![image](https://github.com/user-attachments/assets/e192183d-1dce-4fcf-8014-6e6729c97f71)
+
+

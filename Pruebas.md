@@ -9,7 +9,7 @@ Este documento contiene la evidencia de las pruebas realizadas en el sistema Gre
 
 Las pruebas unitarias evalúan la funcionalidad de métodos individuales para garantizar su correcto funcionamiento.
 
-##  🔹 1. Cargar productos desde la base de datos
+###  🔹 1. Cargar productos desde la base de datos
 
 📌 Descripción: Verificar que los productos se cargan correctamente en la tabla.
 
@@ -23,7 +23,7 @@ Las pruebas unitarias evalúan la funcionalidad de métodos individuales para ga
 ![image](https://github.com/user-attachments/assets/8bab5ac9-4ec5-40b7-93d3-a99f4bf14a95)
 
   
-###🔹 2. Añadir producto al carrito
+### 🔹 2. Añadir producto al carrito
 
 Descripción: Comprobar que los productos se añaden correctamente al carrito.
 

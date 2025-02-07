@@ -56,6 +56,7 @@ A continuación, se muestran algunas capturas de pantalla del funcionamiento del
 ![image](https://github.com/user-attachments/assets/c5c72f35-011a-4fc9-b9cf-0839a4b36b35)
 ### Generación de Factura:
 ![image](https://github.com/user-attachments/assets/68b97320-56f1-47bb-aa06-5e7469a93e8c)
-![image](https://github.com/user-attachments/assets/e192183d-1dce-4fcf-8014-6e6729c97f71)
+![image](https://github.com/user-attachments/assets/99220680-e657-493a-972d-2d81ccc477e8)
+
 
 

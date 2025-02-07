@@ -1,62 +1,43 @@
-GreenShop - Sistema para Tienda de Productos Orgánicos
+# 🛍️ GreenShop - Sistema para Tienda de Productos Orgánicos  
 
-Descripción del Proyecto
+## 🔗 Descripción del Proyecto  
+Este proyecto tiene como objetivo la **gestión eficiente de inventarios y ventas** en tiendas de productos orgánicos.  
+Permite administrar **stock**, realizar **transacciones de compra** y generar **notas de venta en PDF**.  
+El sistema está desarrollado en **Java**, con almacenamiento en **SQLite** y una interfaz gráfica mejorada con **FlatLaf**.  
 
-GreenShop es un sistema de gestión de inventarios y ventas para tiendas de productos orgánicos. Su objetivo es simplificar el manejo de stock, las transacciones de compra y la generación de notas de venta.
+---
 
-Características Principales
+### 🔍 Características Principales  
+✅ **Autenticación de Usuarios**: Sistema de login seguro para acceder a la plataforma.  
+✅ **Gestión de Productos**: Administración de stock, precios y visualización de productos.  
+✅ **Sistema de Ventas**: Registro de transacciones y generación de facturas en **PDF** con iTextPDF.  
+✅ **Base de Datos**: Almacenamiento en **SQLite**, con integración mediante JDBC.  
+✅ **Interfaz Moderna**: Diseño atractivo y responsivo usando **FlatLaf**.  
 
-Autenticación de Usuarios: Login seguro para acceder al sistema.
+---
 
-Gestor de Productos: Visualización, administración y actualización de stock.
+## 🛠️ Tecnologías Utilizadas  
 
-Sistema de Ventas: Registro de transacciones y generación de facturas en PDF.
+### 📌 Bases de Datos  
+- **SQLite** (almacenamiento local con JDBC)  
 
-Base de Datos: Uso de SQLite para el almacenamiento de datos.
+### 🖥️ Lenguaje de Programación  
+- **Java**  
 
-Interfaz Moderna: Uso de FlatLaf para mejorar la apariencia visual.
+### 📚 Librerías  
+- **FlatLaf** → Para mejorar la apariencia visual  
+- **iTextPDF** → Para la generación de facturas en PDF  
+- **xerial SQLite JDBC** → Para la conexión con la base de datos SQLite  
 
-Instalación y Configuración
+---
 
-Requisitos Previos
+## ⚙️ Instalación y Configuración  
 
-Java 11 o superior
+### 📌 Requisitos Previos  
+🔹 **Java 11** o superior  
+🔹 **SQLite JDBC** instalado  
 
-SQLite JDBC
-
-Librerías:
-
-FlatLaf (Interfaz visual moderna)
-
-iTextPDF (Generación de facturas en PDF)
-
-xerial SQLite JDBC (Conector para la base de datos SQLite)
-
-Pasos de Instalación
-
-Clonar el repositorio:
-
-git clone https://github.com/usuario/GreenShop.git
-cd GreenShop
-
-Importar el proyecto en tu IDE favorito (IntelliJ, Eclipse, NetBeans).
-
-Agregar las librerías necesarias al proyecto.
-
-Configurar la base de datos ejecutando el script GreenShop.sql en SQLite.
-
-Ejecutar la clase principal Main.java.
-Uso del Sistema
-
-Iniciar sesión con un usuario registrado.
-
-Agregar productos al carrito.
-
-Procesar la compra y generar la factura en PDF.
-
-Visualizar y actualizar el stock disponible.
-
-
-Autor
-
-Desarrollado por [Tu Nombre].
+### 📥 Pasos de Instalación  
+1. Clonar el repositorio:  
+   ```bash
+   git clone https://github.com/tu_usuario/GreenShop.git

@@ -225,6 +225,17 @@ public class PaginaclienteGreen extends JFrame {
                 pstmtDetalle.executeUpdate();
             }
 
+            // Actualizar el stock de productos
+            String actualizarStock = "UPDATE productos " +
+                    "SET stock = stock - (SELECT cantidad FROM detalle_ventas WHERE productos.id_producto = detalle_ventas.id_producto AND id_venta = ?) " +
+                    "WHERE id_producto IN (SELECT id_producto FROM detalle_ventas WHERE id_venta = ?)";
+
+            try (PreparedStatement pstmtStock = conn.prepareStatement(actualizarStock)) {
+                pstmtStock.setInt(1, idVenta);
+                pstmtStock.setInt(2, idVenta);
+                pstmtStock.executeUpdate();
+            }
+
             // Vaciar carrito
             try (PreparedStatement pstmtCarrito = conn.prepareStatement("DELETE FROM carrito WHERE id_usuario = ?")) {
                 pstmtCarrito.setInt(1, idUsuario);
@@ -241,6 +252,7 @@ public class PaginaclienteGreen extends JFrame {
             JOptionPane.showMessageDialog(null, "Error al confirmar la compra.");
         }
     }
+
 
     private double obtenerTotalCarrito() {
         double total = 0;

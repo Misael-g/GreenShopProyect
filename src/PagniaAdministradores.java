@@ -256,6 +256,11 @@ public class PagniaAdministradores extends JFrame {
             pstmt.setInt(4, idProducto);
             pstmt.executeUpdate();
 
+            // Limpiar los campos de entrada
+            textonombreproduct.setText("");
+            textoprecioproduct.setText("");
+            textonumerodeestuck.setText("");
+
             JOptionPane.showMessageDialog(null, "Producto actualizado con éxito.");
             cargarProductos();
         } catch (SQLException e) {
